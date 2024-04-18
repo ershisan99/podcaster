@@ -1,30 +1,22 @@
 import { PodcastPreviewCard } from "../components/podcast-preview-card";
+import { podcastsService } from "../services/podcasts/podcasts.service";
+import { useQuery } from "../hooks/useQuery";
 
 export function Home() {
+  const { data } = useQuery(() => podcastsService.getTopPodcasts());
+
   return (
     <main>
       <div className={"grid grid-cols-4"}>
-        {podcasts.map((podcast) => (
+        {data?.map((podcast) => (
           <PodcastPreviewCard
+            key={podcast.id}
             title={podcast.title}
             author={podcast.author}
-            imageUrl={podcast.imageSrc}
+            imageUrl={podcast.imageUrl}
           />
         ))}
       </div>
     </main>
   );
 }
-
-const podcasts = [
-  {
-    imageSrc: "https://picsum.photos/200/200",
-    title: "Podcast 1",
-    author: "Author 1",
-  },
-  {
-    imageSrc: "https://picsum.photos/200/200",
-    title: "Podcast 2",
-    author: "Author 2",
-  },
-];

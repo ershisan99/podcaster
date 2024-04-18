@@ -1,5 +1,7 @@
 import { GetEpisodesResponse, GetTopPodcastsResponse } from "./podcasts.types";
-import { PodcastDTO } from "./podcast.dto";
+import { PodcastDTO } from "./dto/podcast.dto";
+import { EpisodeDto } from "./dto/episode.dto";
+import { PodcastExtraDTO } from "./dto/podcast-extra.dto";
 
 class PodcastsService {
   baseUrl = "https://itunes.apple.com";
@@ -23,11 +25,30 @@ class PodcastsService {
     };
     url.search = new URLSearchParams(params).toString();
 
-    const response = await fetch(url);
-    const data: GetEpisodesResponse = await response.json();
+    const response: GetEpisodesResponse = await this.fetchWithoutCors(
+      url.toString(),
+    );
+    let podcast: PodcastExtraDTO = {} as PodcastExtraDTO;
+    const episodes: EpisodeDto[] = [];
 
-    //TODO: add dto
-    return data;
+    response.results.forEach((entry) => {
+      if (entry.kind === "podcast-episode") {
+        episodes.push(new EpisodeDto(entry));
+      } else if (entry.kind === "podcast") {
+        podcast = new PodcastExtraDTO(entry);
+      }
+    });
+
+    return { episodes, podcast: podcast };
+  }
+
+  //TODO: move into a separate service
+  private async fetchWithoutCors(url: string) {
+    const response = await fetch(
+      `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
+    );
+    const data = await response.json();
+    return JSON.parse(data.contents);
   }
 }
 

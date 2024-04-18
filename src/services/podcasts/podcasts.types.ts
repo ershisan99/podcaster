@@ -165,46 +165,72 @@ export interface Id2 {
 
 export interface GetEpisodesResponse {
   resultCount: number;
-  results: PodcastDetails[];
+  results: Array<Episode | PodcastDetails>;
+}
+
+export interface Episode {
+  country: string;
+  artworkUrl160: string;
+  episodeFileExtension: string;
+  episodeContentType: string;
+  artworkUrl600: string;
+  collectionViewUrl: string;
+  artistIds: number[];
+  feedUrl: string;
+  closedCaptioning: string;
+  collectionId: number;
+  collectionName: string;
+  trackTimeMillis: number;
+  trackId: number;
+  trackName: string;
+  shortDescription: string;
+  description: string;
+  contentAdvisoryRating: string;
+  trackViewUrl: string;
+  previewUrl: string;
+  artworkUrl60: string;
+  episodeUrl: string;
+  releaseDate: string;
+  episodeGuid: string;
+  genres: Genre[];
+  kind: "podcast-episode";
+  wrapperType: string;
+}
+
+export interface Genre {
+  name: string;
+  id: string;
 }
 
 export interface PodcastDetails {
   wrapperType: string;
-  kind: string;
+  kind: "podcast";
   collectionId: number;
   trackId: number;
-  artistName?: string;
+  artistName: string;
   collectionName: string;
   trackName: string;
-  collectionCensoredName?: string;
-  trackCensoredName?: string;
+  collectionCensoredName: string;
+  trackCensoredName: string;
   collectionViewUrl: string;
   feedUrl: string;
   trackViewUrl: string;
-  artworkUrl30?: string;
+  artworkUrl30: string;
   artworkUrl60: string;
-  artworkUrl100?: string;
-  collectionPrice?: number;
-  trackPrice?: number;
-  collectionHdPrice?: number;
+  artworkUrl100: string;
+  collectionPrice: number;
+  trackPrice: number;
+  collectionHdPrice: number;
   releaseDate: string;
-  collectionExplicitness?: string;
-  trackExplicitness?: string;
-  trackCount?: number;
+  collectionExplicitness: string;
+  trackExplicitness: string;
+  trackCount: number;
   trackTimeMillis: number;
   country: string;
-  currency?: string;
-  primaryGenreName?: string;
+  currency: string;
+  primaryGenreName: string;
   contentAdvisoryRating: string;
   artworkUrl600: string;
-  genreIds?: string[];
-  closedCaptioning?: string;
-  shortDescription?: string;
-  episodeUrl?: string;
-  episodeGuid?: string;
-  description?: string;
-  artworkUrl160?: string;
-  episodeContentType?: string;
-  episodeFileExtension?: string;
-  previewUrl?: string;
+  genreIds: string[];
+  genres: string[];
 }

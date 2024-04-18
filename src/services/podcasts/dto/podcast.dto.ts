@@ -1,4 +1,4 @@
-import { Entry, ImImage } from "./podcasts.types";
+import { Entry, ImImage } from "../podcasts.types";
 
 export class PodcastDTO {
   id: string;

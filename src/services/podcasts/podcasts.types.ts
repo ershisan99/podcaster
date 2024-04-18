@@ -1,4 +1,4 @@
-export interface TopPodcastsResponse {
+export interface GetTopPodcastsResponse {
   feed: Feed;
 }
 
@@ -161,4 +161,50 @@ export interface Attributes9 {
 
 export interface Id2 {
   label: string;
+}
+
+export interface GetEpisodesResponse {
+  resultCount: number;
+  results: PodcastDetails[];
+}
+
+export interface PodcastDetails {
+  wrapperType: string;
+  kind: string;
+  collectionId: number;
+  trackId: number;
+  artistName?: string;
+  collectionName: string;
+  trackName: string;
+  collectionCensoredName?: string;
+  trackCensoredName?: string;
+  collectionViewUrl: string;
+  feedUrl: string;
+  trackViewUrl: string;
+  artworkUrl30?: string;
+  artworkUrl60: string;
+  artworkUrl100?: string;
+  collectionPrice?: number;
+  trackPrice?: number;
+  collectionHdPrice?: number;
+  releaseDate: string;
+  collectionExplicitness?: string;
+  trackExplicitness?: string;
+  trackCount?: number;
+  trackTimeMillis: number;
+  country: string;
+  currency?: string;
+  primaryGenreName?: string;
+  contentAdvisoryRating: string;
+  artworkUrl600: string;
+  genreIds?: string[];
+  closedCaptioning?: string;
+  shortDescription?: string;
+  episodeUrl?: string;
+  episodeGuid?: string;
+  description?: string;
+  artworkUrl160?: string;
+  episodeContentType?: string;
+  episodeFileExtension?: string;
+  previewUrl?: string;
 }

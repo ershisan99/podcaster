@@ -10,6 +10,7 @@ export function Home() {
       <div className={"grid grid-cols-4"}>
         {data?.map((podcast) => (
           <PodcastPreviewCard
+            detailUrl={`/podcast/${podcast.id}`}
             key={podcast.id}
             title={podcast.title}
             author={podcast.author}

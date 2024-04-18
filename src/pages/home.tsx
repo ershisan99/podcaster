@@ -1,10 +1,9 @@
 import { PodcastPreviewCard } from "../components/podcast-preview-card";
-import { podcastsService } from "../services/podcasts/podcasts.service";
-import { useQuery } from "../hooks/useQuery";
 import { useState } from "react";
+import { useTopPodcastsQuery } from "../services/podcasts/podcast.hooks";
 
 export function Home() {
-  const { data } = useQuery(() => podcastsService.getTopPodcasts());
+  const { data, isLoading } = useTopPodcastsQuery();
   const [search, setSearch] = useState("");
 
   const filteredData = data?.filter((podcast) => {
@@ -13,6 +12,10 @@ export function Home() {
       podcast.author.toLowerCase().includes(search.toLowerCase())
     );
   });
+
+  if (isLoading) {
+    return null;
+  }
 
   return (
     <main>

@@ -32,7 +32,7 @@ export function Home() {
             key={podcast.id}
             title={podcast.title}
             author={podcast.author}
-            imageUrl={podcast.imageUrl}
+            imageUrl={podcast.images.large}
           />
         ))}
       </div>

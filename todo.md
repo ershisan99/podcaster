@@ -18,8 +18,8 @@
 
   - [x] Shows a list of 100 most popular podcasts from iTunes
   - [ ] Caches the list for 24 hours
-  - [ ] Has filtering by name and author
-  - [ ] Filters are applied in real time
+  - [x] Has filtering by name and author
+  - [x] Filters are applied in real time
   - [x] Clicking on a podcast navigates to the podcast page
 
 - [ ] Podcast

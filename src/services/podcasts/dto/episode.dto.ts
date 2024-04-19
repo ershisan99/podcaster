@@ -6,6 +6,7 @@ export class EpisodeDto {
   audioUrl: string;
   title: string;
   durationSeconds: number;
+  description: string;
 
   constructor(episode: Episode) {
     this.id = episode.trackId;
@@ -13,5 +14,6 @@ export class EpisodeDto {
     this.releaseDate = episode.releaseDate;
     this.audioUrl = episode.episodeUrl;
     this.durationSeconds = episode.trackTimeMillis / 1000;
+    this.description = episode.description;
   }
 }

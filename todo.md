@@ -24,10 +24,10 @@
 
 - [ ] Podcast
 
-  - [ ] Shows the podcast details in an aside (name, author, image, description)
-  - [ ] Shows the podcast episodes and number of episodes
+  - [x] Shows the podcast details in an aside (name, author, image, description)
+  - [x] Shows the podcast episodes and number of episodes
   - [ ] Caches the podcast info for 24 hours
-  - [ ] Clicking on an episode navigates to the episode page
+  - [x] Clicking on an episode navigates to the episode page
 
 - [ ] Episode
 

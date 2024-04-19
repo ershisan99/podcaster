@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   usePodcastEpisodesQuery,
   useTopPodcastsQuery,
@@ -48,10 +48,13 @@ export function Podcast() {
             {episodesData?.episodes?.map((episode) => {
               const formattedDate = formatDate(episode.releaseDate);
               const formattedDuration = formatDuration(episode.durationSeconds);
+              const url = `/podcast/${podcastId}/episode/${episode.id}`;
 
               return (
                 <tr key={episode.id}>
-                  <td>{episode.title}</td>
+                  <td>
+                    <Link to={url}>{episode.title}</Link>
+                  </td>
                   <td>{formattedDate}</td>
                   <td>{formattedDuration}</td>
                 </tr>

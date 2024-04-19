@@ -3,6 +3,7 @@ import {
   usePodcastEpisodesQuery,
   useTopPodcastsQuery,
 } from "../services/podcasts/podcast.hooks";
+import { PodcastInfoCard } from "../components/podcast-info-card";
 
 export function Podcast() {
   const { podcastId } = useParams<{ podcastId: string }>();
@@ -28,12 +29,12 @@ export function Podcast() {
   // TODO: break into smaller components
   return (
     <div>
-      <div>
-        <h1>{podcast.title}</h1>
-        <h2>{podcast.author}</h2>
-        <img src={episodesData?.podcast?.images.large} alt={podcast.title} />
-        <p>{podcast.description}</p>
-      </div>
+      <PodcastInfoCard
+        author={podcast.author}
+        title={podcast.title}
+        description={podcast.description}
+        imageURL={episodesData?.podcast.images.large ?? ""}
+      />
       <div>Episodes: {episodesData?.podcast.trackCount}</div>
       <div>
         <table>

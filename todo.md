@@ -5,7 +5,7 @@
 - [x] Must be an SPA
 - [x] Must have dev and production modes
 - [x] Must have a README.md with instructions
-- [ ] Must be published on GitHub or Bitbucket
+- [x] Must be published on GitHub or Bitbucket
 
 ## Limitations
 
@@ -32,7 +32,7 @@
 - [ ] Episode
 
   - [x] Shows the podcast details (name, author, image, description)
-    - [ ] Image and title are clickable and navigate to the podcast page
+    - [x] Image and title are clickable and navigate to the podcast page
   - [x] Shows the episode details (title and description)
   - [x] Shows the episode audio player
   - [ ] Renders description as HTML

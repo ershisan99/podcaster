@@ -2,8 +2,8 @@ import { createElement, ReactNode } from "react";
 
 type Props = {
   if?: boolean;
-  with: (typeof createElement.arguments)[0];
-  wrapperProps: (typeof createElement.arguments)[1];
+  with: Parameters<typeof createElement>[0];
+  wrapperProps: Parameters<typeof createElement>[1];
   children: NonNullable<ReactNode>;
 };
 

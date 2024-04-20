@@ -37,6 +37,12 @@
   - [x] Shows the episode audio player
   - [x] Renders description as HTML
 
-- [ ] Header
-  - [ ] Title is a link to the home page
-  - [ ] Has a global loader indicator
+- [x] Header
+  - [x] Title is a link to the home page
+  - [x] Has a global loader indicator
+
+## Other
+
+- [x] Close all todos
+- [x] Add styles
+- [x] Refactor to use better names

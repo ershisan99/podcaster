@@ -30,7 +30,11 @@ export function PodcastInfoCard({
         </Wrap>
       </div>
       <div className={"border-b px-2 py-4"}>
-        <Wrap if={shouldWrapWithLink} with={Link} wrapperProps={{ to: href }}>
+        <Wrap
+          if={shouldWrapWithLink}
+          with={Link}
+          wrapperProps={{ to: href, className: "hover:underline" }}
+        >
           <strong className={"block"}>{title}</strong>
           <em className={"text-sm"}>by {author}</em>
         </Wrap>

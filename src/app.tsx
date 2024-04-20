@@ -1,5 +1,7 @@
 import { Router } from "./router";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient } from "@tanstack/react-query";
+import { createIDBPersister } from "./services/infrastructure/persisters/create-idb-persister";
+import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -7,14 +9,19 @@ const queryClient = new QueryClient({
       refetchOnWindowFocus: false,
       refetchOnMount: false,
       retry: false,
+      gcTime: 1000 * 60 * 60 * 24, // 24 hours
     },
   },
 });
+const persister = createIDBPersister();
 
 export function App() {
   return (
-    <QueryClientProvider client={queryClient}>
+    <PersistQueryClientProvider
+      client={queryClient}
+      persistOptions={{ persister }}
+    >
       <Router />
-    </QueryClientProvider>
+    </PersistQueryClientProvider>
   );
 }

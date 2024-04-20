@@ -1,5 +1,6 @@
-import { PodcastPreviewCard } from "../components/podcast-preview-card";
 import { useState } from "react";
+
+import { PodcastPreviewCard } from "../components/podcast-preview-card";
 import { useTopPodcastsQuery } from "../services/podcasts/podcast.hooks";
 
 export function Home() {
@@ -18,14 +19,24 @@ export function Home() {
   }
 
   return (
-    <main>
-      <input
-        type="text"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        placeholder="Search..."
-      />
-      <div className={"grid grid-cols-4"}>
+    <div>
+      <div className={"mb-6 flex items-center justify-end gap-3"}>
+        <span
+          className={
+            "flex items-center rounded-xl bg-sky-800 px-2 py-1.5 font-bold leading-none text-white"
+          }
+        >
+          {filteredData?.length}
+        </span>
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Filter podcasts..."
+          className={"w-1/3 rounded-md border border-gray-300 p-2"}
+        />
+      </div>
+      <div className={"grid grid-cols-4 gap-x-6 gap-y-14"}>
         {filteredData?.map((podcast) => (
           <PodcastPreviewCard
             detailUrl={`/podcast/${podcast.id}`}
@@ -36,6 +47,6 @@ export function Home() {
           />
         ))}
       </div>
-    </main>
+    </div>
   );
 }

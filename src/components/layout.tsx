@@ -14,7 +14,14 @@ export function Layout() {
         }
       >
         <h1 className={"text-2xl font-semibold text-sky-600"}>
-          <Link to={"/"}>Podcaster</Link>
+          <Link to={"/"} className={"flex items-center gap-2"}>
+            <img
+              src={"/android-chrome-192x192.png"}
+              className={"h-6 w-6 shrink-0"}
+              alt={"Podcaster logo"}
+            />
+            Podcaster
+          </Link>
         </h1>
         {isLoading && <Spinner />}
       </header>

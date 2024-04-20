@@ -44,5 +44,5 @@
 ## Other
 
 - [x] Close all todos
-- [ ] Add styles
+- [x] Add styles
 - [ ] Refactor to use better names

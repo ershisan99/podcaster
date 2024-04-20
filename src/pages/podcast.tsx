@@ -5,12 +5,16 @@ import { PodcastInfoCard } from "../components/podcast-info-card";
 export function Podcast() {
   const { podcastId } = useParams<{ podcastId: string }>();
 
-  const { data: podcast } = usePodcastQuery(podcastId);
+  const { data: podcast, isLoading } = usePodcastQuery(podcastId);
 
   if (!podcastId) {
     throw new Error(
       "No podcast ID provided, make sure the component is rendered inside a RouterProvider",
     );
+  }
+
+  if (isLoading) {
+    return null;
   }
 
   if (!podcast) {

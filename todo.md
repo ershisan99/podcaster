@@ -31,10 +31,10 @@
 
 - [ ] Episode
 
-  - [ ] Shows the podcast details (name, author, image, description)
+  - [x] Shows the podcast details (name, author, image, description)
     - [ ] Image and title are clickable and navigate to the podcast page
-  - [ ] Shows the episode details (title and description)
-  - [ ] Shows the episode audio player
+  - [x] Shows the episode details (title and description)
+  - [x] Shows the episode audio player
   - [ ] Renders description as HTML
 
 - [ ] Header

@@ -14,7 +14,7 @@ export function Episode() {
   );
 
   return (
-    <div className={"h-fit p-4 pb-6 shadow-md"}>
+    <div className={"h-fit w-full p-4 pb-6 shadow-md"}>
       <h2 className={"text-2xl font-bold tracking-tight"}>{episode?.title}</h2>
       <div
         className={"prose mt-2 max-w-full border-b pb-4 leading-snug"}

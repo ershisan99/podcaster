@@ -25,14 +25,14 @@ export class RssParser {
     const items = Array.from(xmlDoc.querySelectorAll("item"));
 
     items.forEach((item) => {
-      const id = this.getElementInnerHtml(item, "guid");
+      const id = this.getElementInnerHtml(item, "guid").replace(/\//g, "-");
       const releaseDate = this.getElementInnerHtml(item, "pubDate");
       const audioUrl =
         this.getElementByTagName(item, "enclosure")?.getAttribute("url") ?? "";
 
       const episodeTitle = this.getElementInnerHtml(item, "title");
 
-      const durationSeconds = parseInt(
+      const durationSeconds = this.parseDuration(
         this.getElementInnerHtml(item, "itunes:duration") ?? "0",
       );
 
@@ -55,7 +55,22 @@ export class RssParser {
       episodes,
     };
   }
-
+  public static parseDuration(durationStr: string): number {
+    if (durationStr.includes(":")) {
+      const parts = durationStr.split(":").map((part) => parseInt(part, 10));
+      let seconds = 0;
+      if (parts.length === 3) {
+        seconds = parts[0] * 3600 + parts[1] * 60 + parts[2];
+      } else if (parts.length === 2) {
+        seconds = parts[0] * 60 + parts[1];
+      } else if (parts.length === 1) {
+        seconds = parts[0];
+      }
+      return seconds;
+    } else {
+      return parseInt(durationStr, 10);
+    }
+  }
   public static getElementByTagName(element: Element | null, tagName: string) {
     return element?.getElementsByTagName(tagName)[0];
   }

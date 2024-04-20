@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { usePodcastEpisodesQuery } from "../services/podcasts/podcast.hooks";
+import { usePodcastQuery } from "../services/podcasts/podcast.hooks";
 
 export function Episode() {
   const { podcastId, episodeId } = useParams<{
@@ -7,7 +7,7 @@ export function Episode() {
     episodeId: string;
   }>();
 
-  const { data: episodesData } = usePodcastEpisodesQuery(podcastId);
+  const { data: episodesData } = usePodcastQuery(podcastId);
 
   const episode = episodesData?.episodes.find(
     (episode) => episode.id.toString() === episodeId,
@@ -15,7 +15,10 @@ export function Episode() {
 
   return (
     <div>
-      <div>{episode?.description}</div>
+      <div
+        className={"prose"}
+        dangerouslySetInnerHTML={{ __html: episode?.description ?? "" }}
+      ></div>
       <div>
         <audio controls src={episode?.audioUrl}>
           Audio is not supported by your browser

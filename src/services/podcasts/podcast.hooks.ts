@@ -13,10 +13,10 @@ export function useTopPodcastsQuery() {
   });
 }
 
-export function usePodcastEpisodesQuery(podcastId?: string) {
+export function usePodcastQuery(podcastId?: string) {
   return useQuery({
     queryKey: [QUERY_KEYS.PODCAST_EPISODES, podcastId],
-    queryFn: () => podcastsService.getEpisodesByPodcastId(podcastId ?? ""),
+    queryFn: () => podcastsService.getPodcastById(podcastId ?? ""),
     enabled: !!podcastId,
   });
 }

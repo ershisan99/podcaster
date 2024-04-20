@@ -35,7 +35,7 @@
     - [x] Image and title are clickable and navigate to the podcast page
   - [x] Shows the episode details (title and description)
   - [x] Shows the episode audio player
-  - [ ] Renders description as HTML
+  - [x] Renders description as HTML
 
 - [ ] Header
   - [ ] Title is a link to the home page

@@ -31,7 +31,7 @@ export function PodcastInfoCard({
         <h1>{title}</h1>
         <h2>{author}</h2>
       </Wrap>
-      <p>{description}</p>
+      <p dangerouslySetInnerHTML={{ __html: description }}></p>
     </div>
   );
 }

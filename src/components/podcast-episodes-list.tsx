@@ -1,12 +1,13 @@
 import { Link, useParams } from "react-router-dom";
-import { usePodcastEpisodesQuery } from "../services/podcasts/podcast.hooks";
+import { usePodcastQuery } from "../services/podcasts/podcast.hooks";
 
 export function PodcastEpisodesList() {
   const { podcastId } = useParams<{ podcastId: string }>();
-  const { data: episodesData } = usePodcastEpisodesQuery(podcastId);
+  const { data: podcast } = usePodcastQuery(podcastId);
+
   return (
     <div>
-      <div>Episodes: {episodesData?.podcast.trackCount}</div>
+      <div>Episodes: {podcast?.trackCount}</div>
       <div>
         <table>
           <thead>
@@ -17,7 +18,7 @@ export function PodcastEpisodesList() {
             </tr>
           </thead>
           <tbody>
-            {episodesData?.episodes?.map((episode) => {
+            {podcast?.episodes?.map((episode) => {
               const formattedDate = formatDate(episode.releaseDate);
               const formattedDuration = formatDuration(episode.durationSeconds);
               const url = `/podcast/${podcastId}/episode/${episode.id}`;

@@ -165,7 +165,7 @@ export interface Id2 {
 
 export interface GetEpisodesResponse {
   resultCount: number;
-  results: Array<Episode | PodcastDetails>;
+  results: Array<PodcastDetails>;
 }
 
 export interface Episode {

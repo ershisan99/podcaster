@@ -1,18 +1,23 @@
-import { createElement, ReactNode } from "react";
+import {
+  ComponentPropsWithoutRef,
+  createElement,
+  ElementType,
+  ReactNode,
+} from "react";
 
-type Props = {
+type Props<T extends ElementType> = {
   if?: boolean;
-  with: Parameters<typeof createElement>[0];
-  wrapperProps: Parameters<typeof createElement>[1];
+  with: T;
+  wrapperProps: ComponentPropsWithoutRef<T>;
   children: NonNullable<ReactNode>;
 };
 
-export function Wrap({
+export function Wrap<T extends ElementType>({
   if: condition,
   with: wrapper,
   wrapperProps,
   children,
-}: Props) {
+}: Props<T>) {
   return condition ? (
     createElement(wrapper, wrapperProps, [children])
   ) : (

@@ -7,9 +7,13 @@ export function Layout() {
   const isLoading = fetching > 0;
 
   return (
-    <div className={"p-6 mx-auto max-w-screen-lg"}>
-      <header className={"flex items-center justify-between"}>
-        <h1>
+    <div className={"mx-auto max-w-screen-lg p-6"}>
+      <header
+        className={
+          "mb-4 flex items-center justify-between border-b border-b-slate-400 py-2"
+        }
+      >
+        <h1 className={"text-2xl font-semibold text-sky-600"}>
           <Link to={"/"}>Podcaster</Link>
         </h1>
         {isLoading && <Spinner />}

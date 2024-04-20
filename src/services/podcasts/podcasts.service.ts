@@ -28,6 +28,7 @@ class PodcastsService {
     const response: GetEpisodesResponse = await this.fetchWithoutCors(
       url.toString(),
     );
+
     let podcast: PodcastExtraDTO = {} as PodcastExtraDTO;
     const episodes: EpisodeDto[] = [];
 

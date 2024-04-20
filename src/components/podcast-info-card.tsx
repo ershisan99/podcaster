@@ -5,12 +5,12 @@ type Props = {
   imageURL: string;
 };
 
-export const PodcastInfoCard = ({
+export function PodcastInfoCard({
   title,
   author,
   description,
   imageURL,
-}: Props) => {
+}: Props) {
   return (
     <div>
       <h1>{title}</h1>
@@ -19,4 +19,4 @@ export const PodcastInfoCard = ({
       <p>{description}</p>
     </div>
   );
-};
+}

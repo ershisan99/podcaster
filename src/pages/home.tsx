@@ -36,7 +36,7 @@ export function Home() {
           className={"w-1/3 rounded-md border border-gray-300 p-2"}
         />
       </div>
-      <div className={"grid grid-cols-4 gap-x-6 gap-y-14"}>
+      <div className={"grid grid-cols-4 gap-x-6 gap-y-24"}>
         {filteredData?.map((podcast) => (
           <PodcastPreviewCard
             detailUrl={`/podcast/${podcast.id}`}

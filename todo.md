@@ -43,6 +43,6 @@
 
 ## Other
 
-- [ ] Close all todos
+- [x] Close all todos
 - [ ] Add styles
 - [ ] Refactor to use better names

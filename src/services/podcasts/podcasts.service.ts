@@ -2,6 +2,7 @@ import { GetEpisodesResponse, GetTopPodcastsResponse } from "./podcasts.types";
 import { PodcastDTO } from "./dto/podcast.dto";
 import { RssParser } from "../rss-parser";
 import { PodcastExtraDTO } from "./dto/podcast-extra.dto";
+import { bypassCorsService } from "../bypass-cors";
 
 class PodcastsService {
   baseUrl = "https://itunes.apple.com";
@@ -27,12 +28,13 @@ class PodcastsService {
 
       url.search = new URLSearchParams(params).toString();
 
-      const response: GetEpisodesResponse = await this.fetchWithoutCors(
+      const response = await bypassCorsService.fetchBypassingCors(
         url.toString(),
       );
-      const podcastExtra = new PodcastExtraDTO(response.results[0]);
+      const json: GetEpisodesResponse = await response.json();
+      const podcastExtra = new PodcastExtraDTO(json.results[0]);
       const podcastFromFeed = await this.getPodcastFeed(
-        response.results[0].feedUrl,
+        json.results[0].feedUrl,
       );
       return { ...podcastExtra, ...podcastFromFeed };
     } catch (error) {
@@ -42,28 +44,30 @@ class PodcastsService {
   }
 
   async getPodcastFeed(sourceURL: string) {
-    try {
-      // todo: only use allorigins after getting a cors error
-      // const response = await fetch(
-      //   `https://api.allorigins.win/raw?url=${encodeURIComponent(sourceURL)}`,
-      // );
-      const response = await fetch(sourceURL);
-      const rss = await response.text();
+    let response: Response;
 
+    try {
+      response = await fetch(sourceURL);
+
+      if (!response.ok) {
+        throw new Error("CORS error or other network issue");
+      }
+
+      const rss = await response.text();
       return RssParser.parse(rss);
     } catch (error) {
-      console.error("Error fetching and parsing data:", error);
-      throw error;
-    }
-  }
+      console.warn("Error fetching directly:", error);
+      try {
+        console.log("Attempting to fetch using CORS bypass...");
 
-  //TODO: move into a separate service
-  private async fetchWithoutCors(url: string) {
-    const response = await fetch(
-      `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
-    );
-    const data = await response.json();
-    return JSON.parse(data.contents);
+        response = await bypassCorsService.fetchBypassingCors(sourceURL);
+        const rss = await response.text();
+        return RssParser.parse(rss);
+      } catch (bypassError) {
+        console.error("Error fetching with CORS bypass:", bypassError);
+        throw bypassError;
+      }
+    }
   }
 }
 

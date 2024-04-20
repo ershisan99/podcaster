@@ -23,7 +23,7 @@ export function PodcastInfoCard({
   const shouldWrapWithLink = !!episodeId;
 
   return (
-    <aside className={"h-fit w-1/3 px-2 py-6 shadow-md"}>
+    <aside className={"h-fit w-1/3 shrink-0 px-2 py-6 shadow-md"}>
       <div className={"border-b px-10 pb-4"}>
         <Wrap if={shouldWrapWithLink} with={Link} wrapperProps={{ to: href }}>
           <img src={imageURL} alt={title} />

@@ -1,5 +1,13 @@
 import { Link, useParams } from "react-router-dom";
 import { usePodcastQuery } from "../services/podcasts/podcast.hooks";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeadCell,
+  TableRow,
+} from "./ui/table/table";
 
 export function PodcastEpisodesList() {
   const { podcastId } = useParams<{ podcastId: string }>();
@@ -7,34 +15,43 @@ export function PodcastEpisodesList() {
 
   return (
     <div>
-      <div>Episodes: {podcast?.trackCount}</div>
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Release Date</th>
-              <th>Duration</th>
-            </tr>
-          </thead>
-          <tbody>
+      <div className={"p-3 text-xl font-bold shadow-md"}>
+        Episodes: {podcast?.trackCount}
+      </div>
+      <div className={"mt-6 p-3 shadow-md"}>
+        <Table>
+          <TableHead>
+            <TableRow className={"!bg-slate-50"}>
+              <TableHeadCell className={"text-start"}>Title</TableHeadCell>
+              <TableHeadCell className={"text-start"}>Date</TableHeadCell>
+              <TableHeadCell className={"text-end"}>Duration</TableHeadCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
             {podcast?.episodes?.map((episode) => {
               const formattedDate = formatDate(episode.releaseDate);
               const formattedDuration = formatDuration(episode.durationSeconds);
               const url = `/podcast/${podcastId}/episode/${episode.id}`;
 
               return (
-                <tr key={episode.id}>
-                  <td>
-                    <Link to={url}>{episode.title}</Link>
-                  </td>
-                  <td>{formattedDate}</td>
-                  <td>{formattedDuration}</td>
-                </tr>
+                <TableRow key={episode.id}>
+                  <TableCell>
+                    <Link
+                      to={url}
+                      className={"text-indigo-500 hover:underline"}
+                    >
+                      {episode.title}
+                    </Link>
+                  </TableCell>
+                  <TableCell>{formattedDate}</TableCell>
+                  <TableCell className={"text-end"}>
+                    {formattedDuration}
+                  </TableCell>
+                </TableRow>
               );
             })}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
     </div>
   );
@@ -50,5 +67,9 @@ function formatDuration(duration?: number) {
 }
 
 function formatDate(date: string) {
-  return new Date(date).toLocaleDateString();
+  return new Date(date).toLocaleDateString("es-ES", {
+    month: "2-digit",
+    day: "2-digit",
+    year: "numeric",
+  });
 }

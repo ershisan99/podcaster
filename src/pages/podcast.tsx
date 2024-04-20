@@ -18,7 +18,7 @@ export function Podcast() {
   }
 
   return (
-    <div>
+    <div className={"flex gap-10"}>
       <PodcastInfoCard
         author={podcast.author}
         title={podcast.title}

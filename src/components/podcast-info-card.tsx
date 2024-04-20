@@ -23,15 +23,25 @@ export function PodcastInfoCard({
   const shouldWrapWithLink = !!episodeId;
 
   return (
-    <div>
-      <Wrap if={shouldWrapWithLink} with={Link} wrapperProps={{ to: href }}>
-        <img src={imageURL} alt={title} />
-      </Wrap>
-      <Wrap if={shouldWrapWithLink} with={Link} wrapperProps={{ to: href }}>
-        <h1>{title}</h1>
-        <h2>{author}</h2>
-      </Wrap>
-      <p dangerouslySetInnerHTML={{ __html: description }}></p>
-    </div>
+    <aside className={"h-fit w-1/3 px-2 py-6 shadow-md"}>
+      <div className={"border-b px-10 pb-4"}>
+        <Wrap if={shouldWrapWithLink} with={Link} wrapperProps={{ to: href }}>
+          <img src={imageURL} alt={title} />
+        </Wrap>
+      </div>
+      <div className={"border-b px-2 py-4"}>
+        <Wrap if={shouldWrapWithLink} with={Link} wrapperProps={{ to: href }}>
+          <strong className={"block"}>{title}</strong>
+          <em className={"text-sm"}>by {author}</em>
+        </Wrap>
+      </div>
+      <div>
+        <strong className={"text-sm"}>Description:</strong>
+        <div
+          className={"text-sm italic"}
+          dangerouslySetInnerHTML={{ __html: description }}
+        ></div>
+      </div>
+    </aside>
   );
 }

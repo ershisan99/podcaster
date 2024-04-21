@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { PodcastPreviewCard } from "../components/podcast/podcast-preview-card";
-import { useTopPodcastsQuery } from "../services/podcasts/podcast.hooks";
+import { PodcastPreviewCard, Input } from "../components";
+import { useTopPodcastsQuery } from "../services";
 
 export function Home() {
   const { data, isLoading } = useTopPodcastsQuery();
@@ -28,15 +28,14 @@ export function Home() {
         >
           {filteredData?.length}
         </span>
-        <input
-          type="text"
+        <Input
+          className={"w-1/3"}
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onValueChange={setSearch}
           placeholder="Filter podcasts..."
-          className={"w-1/3 rounded-md border border-gray-300 p-2"}
         />
       </div>
-      <div className={"grid grid-cols-4 gap-x-6 gap-y-24"}>
+      <section role={"list"} className={"grid grid-cols-4 gap-x-6 gap-y-24"}>
         {filteredData?.map((podcast) => (
           <PodcastPreviewCard
             detailUrl={`/podcast/${podcast.id}`}
@@ -46,7 +45,7 @@ export function Home() {
             imageUrl={podcast.images.large}
           />
         ))}
-      </div>
+      </section>
     </div>
   );
 }

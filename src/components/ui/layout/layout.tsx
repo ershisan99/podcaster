@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
-import { Spinner } from "../spinner/spinner";
+import { Spinner } from "../spinner";
 import { useIsFetching } from "@tanstack/react-query";
 
 export function Layout() {

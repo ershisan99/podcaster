@@ -14,7 +14,7 @@ export function PodcastPreviewCard({
   detailUrl,
 }: Props) {
   return (
-    <Link to={detailUrl} className={"w-full"}>
+    <Link to={detailUrl} className={"w-full"} role={"listitem"}>
       <div className={"relative -mb-12 mt-12 h-full p-3 pt-12 shadow-md"}>
         <img
           src={imageUrl}

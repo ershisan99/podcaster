@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { Wrap } from "../utils/wrap";
+import { Wrap } from "../utils";
 
 type Props = {
   title: string;

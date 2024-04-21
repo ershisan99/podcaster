@@ -1,7 +1,6 @@
 import { GetEpisodesResponse, GetTopPodcastsResponse } from "./podcasts.types";
-import { PodcastDTO } from "./dto/podcast.dto";
+import { PodcastDTO, PodcastExtraDTO } from "./dto";
 import { RssParser } from "../rss-parser";
-import { PodcastExtraDTO } from "./dto/podcast-extra.dto";
 import { bypassCorsService } from "../bypass-cors";
 
 class PodcastsService {

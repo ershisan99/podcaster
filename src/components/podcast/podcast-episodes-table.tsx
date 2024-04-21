@@ -6,13 +6,13 @@ import {
   TableHead,
   TableHeadCell,
   TableRow,
-} from "../ui/table/table";
+} from "../ui";
 import { formatDate, formatDuration } from "../../utils";
 import { Link } from "react-router-dom";
-import { Episode } from "../../services/rss-parser";
+import { RssEpisode } from "../../services/rss-parser";
 
 type Props = {
-  episodes: Episode[] | undefined;
+  episodes: RssEpisode[] | undefined;
 };
 
 export const PodcastEpisodesTable = memo(({ episodes }: Props) => {

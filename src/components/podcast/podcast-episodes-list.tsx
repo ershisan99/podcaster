@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import { usePodcastQuery } from "../../services/podcasts/podcast.hooks";
-import { useTitle } from "../../hooks/use-title";
+import { usePodcastQuery } from "../../services";
+import { useTitle } from "../../hooks";
 import { PodcastEpisodesTable } from "./podcast-episodes-table";
 
 export function PodcastEpisodesList() {

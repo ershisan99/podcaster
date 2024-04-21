@@ -1,26 +1,14 @@
-export interface Episode {
-  id: string;
-  releaseDate: string;
-  audioUrl: string;
-  title: string;
-  durationSeconds: number;
-  description: string;
-}
-
-export interface Podcast {
-  description: string;
-  episodes: Episode[];
-}
+import { RssEpisode, RssPodcast } from "./rss-parser.types";
 
 export class RssParser {
-  public static parse(rss: string): Podcast {
+  public static parse(rss: string): RssPodcast {
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(rss, "text/xml");
 
     const channel = xmlDoc.querySelector("channel");
     const description = this.getElementInnerHtml(channel, "description");
 
-    const episodes: Episode[] = [];
+    const episodes: RssEpisode[] = [];
 
     const items = Array.from(xmlDoc.querySelectorAll("item"));
 
@@ -55,6 +43,7 @@ export class RssParser {
       episodes,
     };
   }
+
   public static parseDuration(durationStr: string): number {
     if (durationStr.includes(":")) {
       const parts = durationStr.split(":").map((part) => parseInt(part, 10));
@@ -71,6 +60,7 @@ export class RssParser {
       return parseInt(durationStr, 10);
     }
   }
+
   public static getElementByTagName(element: Element | null, tagName: string) {
     return element?.getElementsByTagName(tagName)[0];
   }

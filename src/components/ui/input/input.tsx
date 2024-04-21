@@ -1,16 +1,30 @@
-import { ComponentPropsWithoutRef, ElementRef, forwardRef } from "react";
-import { clsx } from "clsx";
+import {
+  ChangeEvent,
+  ComponentPropsWithoutRef,
+  ElementRef,
+  forwardRef,
+} from "react";
+import { cn } from "../../../utils";
 
-type InputProps = ComponentPropsWithoutRef<"input">;
+type InputProps = ComponentPropsWithoutRef<"input"> & {
+  onValueChange?: (value: string) => void;
+};
 type InputRef = ElementRef<"input">;
 
 export const Input = forwardRef<InputRef, InputProps>(
-  ({ className, ...props }, ref) => {
-    const classes = clsx(
-      "w-1/3 rounded-md border border-gray-300 p-2",
+  ({ className, onChange, onValueChange, ...props }, ref) => {
+    const classes = cn(
+      "w-full rounded-md border border-gray-300 p-2",
       className,
     );
 
-    return <input ref={ref} className={classes} {...props} />;
+    function handleChange(e: ChangeEvent<HTMLInputElement>) {
+      onChange?.(e);
+      onValueChange?.(e.target.value);
+    }
+
+    return (
+      <input ref={ref} className={classes} onChange={handleChange} {...props} />
+    );
   },
 );

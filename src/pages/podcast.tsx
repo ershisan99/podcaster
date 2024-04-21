@@ -1,6 +1,6 @@
 import { Outlet, useParams } from "react-router-dom";
-import { usePodcastQuery } from "../services/podcasts/podcast.hooks";
-import { PodcastInfoCard } from "../components/podcast/podcast-info-card";
+import { usePodcastQuery } from "../services";
+import { PodcastInfoCard } from "../components";
 
 export function Podcast() {
   const { podcastId } = useParams<{ podcastId: string }>();

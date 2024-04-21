@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { Wrap } from "./wrap";
+import { Wrap } from "../utils/wrap";
 
 type Props = {
   title: string;
@@ -39,10 +39,10 @@ export function PodcastInfoCard({
           <em className={"text-sm"}>by {author}</em>
         </Wrap>
       </div>
-      <div>
+      <div className={"px-2 py-2"}>
         <strong className={"text-sm"}>Description:</strong>
         <div
-          className={"break-words text-sm italic"}
+          className={"mt-1 break-words text-sm italic"}
           dangerouslySetInnerHTML={{ __html: description }}
         ></div>
       </div>

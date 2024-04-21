@@ -2,8 +2,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Home } from "./pages/home";
 import { Podcast } from "./pages/podcast";
 import { Episode } from "./pages/episode";
-import { PodcastEpisodesList } from "./components/podcast-episodes-list";
-import { Layout } from "./components/layout";
+import { PodcastEpisodesList } from "./components/podcast/podcast-episodes-list";
+import { Layout } from "./components/ui/layout/layout";
 
 const router = createBrowserRouter([
   {

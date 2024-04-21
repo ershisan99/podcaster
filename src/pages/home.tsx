@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { PodcastPreviewCard } from "../components/podcast-preview-card";
+import { PodcastPreviewCard } from "../components/podcast/podcast-preview-card";
 import { useTopPodcastsQuery } from "../services/podcasts/podcast.hooks";
 
 export function Home() {

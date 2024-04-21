@@ -35,7 +35,7 @@ export const TableHeadCell = forwardRef<
   ElementRef<"th">,
   ComponentPropsWithoutRef<"th">
 >(({ children, className, ...rest }, ref) => {
-  const classes = clsx(className, "py-3 px-4");
+  const classes = clsx(className, "py-3 px-4 text-start");
 
   return (
     <th className={classes} {...rest} ref={ref}>

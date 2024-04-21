@@ -17,17 +17,17 @@ export function Episode() {
   useTitle(episode?.title ?? "Episode");
 
   return (
-    <div className={"h-fit w-full p-4 pb-6 shadow-md"}>
-      <h2 className={"text-2xl font-bold tracking-tight"}>{episode?.title}</h2>
-      <div
+    <section className={"h-fit w-full p-4 pb-6 shadow-md"}>
+      <header className={"text-2xl font-bold tracking-tight"}>
+        {episode?.title}
+      </header>
+      <article
         className={"prose mt-2 max-w-full border-b pb-4 leading-snug"}
         dangerouslySetInnerHTML={{ __html: episode?.description ?? "" }}
       />
-      <div>
-        <audio controls src={episode?.audioUrl} className={"mt-4 w-full"}>
-          Audio is not supported by your browser
-        </audio>
-      </div>
-    </div>
+      <audio controls src={episode?.audioUrl} className={"mt-4 w-full"}>
+        Audio is not supported by your browser
+      </audio>
+    </section>
   );
 }

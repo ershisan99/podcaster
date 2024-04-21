@@ -45,4 +45,4 @@
 
 - [x] Close all todos
 - [x] Add styles
-- [ ] Refactor to use better names
+- [x] Refactor to use better names

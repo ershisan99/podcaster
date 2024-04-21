@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { usePodcastQuery } from "../services/podcasts/podcast.hooks";
+import { useTitle } from "../hooks/use-title";
 
 export function Episode() {
   const { podcastId, episodeId } = useParams<{
@@ -12,6 +13,8 @@ export function Episode() {
   const episode = episodesData?.episodes.find(
     (episode) => episode.id.toString() === episodeId,
   );
+
+  useTitle(episode?.title ?? "Episode");
 
   return (
     <div className={"h-fit w-full p-4 pb-6 shadow-md"}>

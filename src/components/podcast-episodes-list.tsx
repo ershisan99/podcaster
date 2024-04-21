@@ -8,10 +8,12 @@ import {
   TableHeadCell,
   TableRow,
 } from "./ui/table/table";
+import { useTitle } from "../hooks/use-title";
 
 export function PodcastEpisodesList() {
   const { podcastId } = useParams<{ podcastId: string }>();
   const { data: podcast } = usePodcastQuery(podcastId);
+  useTitle(podcast?.title ?? "Podcast");
 
   return (
     <div>

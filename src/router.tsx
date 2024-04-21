@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Home } from "./pages/home";
 import { Podcast } from "./pages/podcast";
 import { PodcastEpisodesList, Episode, Layout } from "./components";
+import { NotFound } from "./pages/not-found";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
             element: <Episode />,
           },
         ],
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       },
     ],
   },

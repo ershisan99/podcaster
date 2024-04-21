@@ -7,16 +7,21 @@ import { bypassCorsService } from "../bypass-cors";
 class PodcastsService {
   baseUrl = "https://itunes.apple.com";
 
-  async getTopPodcasts(): Promise<PodcastDTO[]> {
+  async getTopPodcasts({
+    signal,
+  }: {
+    signal: AbortSignal;
+  }): Promise<PodcastDTO[]> {
     const response = await fetch(
       `${this.baseUrl}/us/rss/toppodcasts/limit=100/genre=1310/json`,
+      { signal },
     );
     const data: GetTopPodcastsResponse = await response.json();
 
     return data.feed.entry.map((podcast) => new PodcastDTO(podcast));
   }
 
-  async getPodcastById(podcastId: string) {
+  async getPodcastById(podcastId: string, { signal }: { signal: AbortSignal }) {
     try {
       const url = new URL(`${this.baseUrl}/lookup`);
       const params = {
@@ -30,11 +35,13 @@ class PodcastsService {
 
       const response = await bypassCorsService.fetchBypassingCors(
         url.toString(),
+        { signal },
       );
       const json: GetEpisodesResponse = await response.json();
       const podcastExtra = new PodcastExtraDTO(json.results[0]);
       const podcastFromFeed = await this.getPodcastFeed(
         json.results[0].feedUrl,
+        { signal },
       );
       return { ...podcastExtra, ...podcastFromFeed };
     } catch (error) {
@@ -43,11 +50,11 @@ class PodcastsService {
     }
   }
 
-  async getPodcastFeed(sourceURL: string) {
+  async getPodcastFeed(sourceURL: string, { signal }: { signal: AbortSignal }) {
     let response: Response;
 
     try {
-      response = await fetch(sourceURL);
+      response = await fetch(sourceURL, { signal });
 
       if (!response.ok) {
         throw new Error("CORS error or other network issue");
@@ -60,7 +67,9 @@ class PodcastsService {
       try {
         console.log("Attempting to fetch using CORS bypass...");
 
-        response = await bypassCorsService.fetchBypassingCors(sourceURL);
+        response = await bypassCorsService.fetchBypassingCors(sourceURL, {
+          signal,
+        });
         const rss = await response.text();
         return RssParser.parse(rss);
       } catch (bypassError) {

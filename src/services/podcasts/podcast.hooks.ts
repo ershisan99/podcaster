@@ -9,14 +9,15 @@ const QUERY_KEYS = {
 export function useTopPodcastsQuery() {
   return useQuery({
     queryKey: [QUERY_KEYS.TOP_PODCASTS],
-    queryFn: () => podcastsService.getTopPodcasts(),
+    queryFn: ({ signal }) => podcastsService.getTopPodcasts({ signal }),
   });
 }
 
 export function usePodcastQuery(podcastId?: string) {
   return useQuery({
     queryKey: [QUERY_KEYS.PODCAST_EPISODES, podcastId],
-    queryFn: () => podcastsService.getPodcastById(podcastId ?? ""),
+    queryFn: ({ signal }) =>
+      podcastsService.getPodcastById(podcastId ?? "", { signal }),
     enabled: !!podcastId,
   });
 }

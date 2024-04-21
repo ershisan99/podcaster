@@ -1,4 +1,5 @@
 import { RssEpisode, RssPodcast } from "./rss-parser.types";
+import DOMPurify from "dompurify";
 
 export class RssParser {
   public static parse(rss: string): RssPodcast {
@@ -66,8 +67,10 @@ export class RssParser {
   }
 
   public static getElementInnerHtml(element: Element | null, tagName: string) {
-    return this.cleanCDATA(
-      this.getElementByTagName(element, tagName)?.innerHTML ?? "",
+    return DOMPurify.sanitize(
+      this.cleanCDATA(
+        this.getElementByTagName(element, tagName)?.innerHTML ?? "",
+      ),
     );
   }
 
